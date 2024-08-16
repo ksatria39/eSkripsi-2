@@ -58,21 +58,16 @@ class Post_Proposal extends CI_Controller {
 	{
 		$judul = $this->Propasca_model->get_title($this->session->userdata('user_id'));
 
-		if ($judul) {
-			$content = 'post/proposal/mahasiswa/mahasiswa';
-		} else {
-			$content = 'post/proposal/mahasiswa/mahasiswa2';
-		}
-
 		$data = [
 			'title' => "Pasca Ujian Proposal",
-			'content' => $content, 
+			'content' => 'post/proposal/mahasiswa/mahasiswa', 
 			'judul' => $judul,
 		];
 		$this->load->view('template/overlay/mahasiswa', $data);
 	}
 
-	public function upload() {
+	public function upload() 
+	{
         $config['upload_path']          = './file/proposal/naskah_final'; 
         $config['allowed_types']        = 'pdf'; 
         $config['max_size']             = 10240; 
@@ -98,6 +93,40 @@ class Post_Proposal extends CI_Controller {
             // Redirect atau tampilkan pesan sukses
             redirect('post_proposal');
         }
+	}
+
+	public function upload_new()
+	{
+		$config['upload_path']          = './file/proposal/naskah_final';
+		$config['allowed_types']        = 'pdf';
+		$config['max_size']             = 10240;
+
+		$this->load->library('upload', $config);
+
+		if (! $this->upload->do_upload('proposal_final')) {
+			$error = $this->upload->display_errors();
+			$this->session->set_flashdata('error', $error);
+			redirect('post_proposal');
+		} else {
+			$data = $this->upload->data();
+			$file_name = $data['file_name'];
+
+			$upload_data = array(
+				'title_id' => $this->input->post('title_id'),
+				'file_naskah' => $file_name,
+				'tanggal_upload' => date('Y-m-d H:i:s')
+			);
+
+			$this->Propasca_model->insert($upload_data);
+
+			$title_id = $this->input->post('title_id');
+			$data_title['judul'] = $this->input->post('new_title');
+
+			$this->Propasca_model->update_title($title_id, $data_title);
+
+			// Redirect atau tampilkan pesan sukses
+			redirect('post_proposal');
+		}
 	}
 
     public function dosen()
