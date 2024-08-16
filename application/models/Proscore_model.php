@@ -14,11 +14,11 @@ class Proscore_model extends CI_Model
 		$this->db->select('*, pro_register.id as pro_id, pro_nilai.id as nilai_id');
 		$this->db->from('pro_register');
 		$this->db->join('title', 'pro_register.title_id = title.id', 'inner');
-		$this->db->join('pro_nilai','pro_register.id = pro_nilai.pro_register_id','inner');
+		$this->db->join('pro_nilai', 'pro_register.id = pro_nilai.pro_register_id', 'inner');
 		$this->db->where('pro_nilai.as', 'dospem-1');
 		$this->db->where('title.dospem_1_id', $id);
 		$this->db->where('pro_register.status', 'Diterima');
-		$this->db->order_by('pro_register.id','desc');
+		$this->db->order_by('pro_register.id', 'desc');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -76,7 +76,7 @@ class Proscore_model extends CI_Model
 		return $query->row();
 	}
 
-	public function insertNilai($id,$data)
+	public function insertNilai($id, $data)
 	{
 		$this->db->where('id', $id);
 		$this->db->update('pro_nilai', $data);
@@ -88,7 +88,7 @@ class Proscore_model extends CI_Model
 		$this->db->from('pro_register');
 		$this->db->join('title', 'pro_register.title_id = title.id', 'inner');
 		$this->db->where('title.mahasiswa', $id);
-		$this->db->where('pro_register.status','diterima');
+		$this->db->where('pro_register.status', 'diterima');
 		$this->db->order_by('pro_register.id', 'desc');
 		$query = $this->db->get();
 		return $query->result();
@@ -96,7 +96,7 @@ class Proscore_model extends CI_Model
 
 	public function getNilaiAll()
 	{
-		$this->db->select('*, pro_register.id as pro_id');
+		$this->db->select('*, pro_register.id as pro_id, title.id as title_id');
 		$this->db->from('pro_register');
 		$this->db->join('title', 'pro_register.title_id = title.id', 'inner');
 		$this->db->where('pro_register.status', 'diterima');
@@ -115,14 +115,14 @@ class Proscore_model extends CI_Model
 		return $query->row();
 	}
 
-	public function getNilaiDospem1($id,$dosen)
+	public function getNilaiDospem1($id, $dosen)
 	{
 		$this->db->select('*');
 		$this->db->from('pro_nilai');
 		$this->db->where('pro_register_id', $id);
 		$this->db->where('dosen_id', $dosen);
-		$this->db->where('as','dospem-1');
-		$this->db->order_by('id','desc');
+		$this->db->where('as', 'dospem-1');
+		$this->db->order_by('id', 'desc');
 		$query = $this->db->get();
 		return $query->row();
 	}
@@ -180,5 +180,11 @@ class Proscore_model extends CI_Model
 		$data = array('nilai' => $nilai);
 		$this->db->where('id', $pro_id);
 		return $this->db->update('pro_register', $data);
+	}
+
+	public function update_status($title_id, $data)
+	{
+		$this->db->where('id', $title_id);
+		return $this->db->update('title', $data);
 	}
 }

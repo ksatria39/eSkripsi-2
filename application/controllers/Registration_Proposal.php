@@ -99,7 +99,7 @@ class Registration_Proposal extends CI_Controller
 		$this->load->view('template/overlay/mahasiswa', $data);
 	}
 
-	//bintang
+	//perubahan 8-14
 	public function addProposal()
 	{
 		if ($this->session->userdata('group_id') != 1) {
@@ -235,7 +235,7 @@ class Registration_Proposal extends CI_Controller
 	{
 		$status = $this->input->post('status');
 
-		if ($status == "Diterima"){
+		if ($status == "Diterima") {
 			$this->session->set_flashdata('success', 'Berhasil menyetujui pendaftaran ujian proposal');
 		} else if ($status == "Ditolak") {
 			$this->session->set_flashdata('denied', 'Berhasil menolak pendaftaran ujian proposal');

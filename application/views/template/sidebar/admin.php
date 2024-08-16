@@ -20,6 +20,11 @@
 					</a>
 				</li>
 				<li>
+					<a href="<?= base_url('dm/skripsi'); ?>" class="<?= set_active_specific(['dm/skripsi', 'dm/add_skripsi']); ?>">
+						<i class="bi bi-circle"></i><span>Skripsi</span>
+					</a>
+				</li>
+				<li>
 					<a href="<?= base_url('dm/research_area'); ?>" class="<?= set_active('dm/research_area'); ?>">
 						<i class="bi bi-circle"></i><span>Bidang Penelitian</span>
 					</a>
