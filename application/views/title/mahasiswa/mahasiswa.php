@@ -261,21 +261,20 @@
 				</div>
 			</div>
 
+			<!-- Revisi 8-18 -->
 			<?php
 			$showAddButton = true;
-			if (empty($myt)) {
-				$showAddButton = true;
-			} else {
-				foreach ($myt as $item) {
-					if (is_object($item) && isset($item->status)) {
-						if ($item->status == "Sedang diproses") {
-							$showAddButton = false;
-							break;
-						} else if ($item->status == "Ditolak") {
-							$showAddButton = true;
-						}
-					}
+			if (is_array($myt) && !empty($myt)) {
+				$latestTitle = $myt[0];
+				if ($latestTitle->status == "Sedang diproses") {
+					$showAddButton = false;
+				} elseif ($latestTitle->status == "Ditolak" || $latestTitle->status_ujian_proposal == 'Tidak lulus') {
+					$showAddButton = true;
+				} else {
+					$showAddButton = false;
 				}
+			} else {
+				$showAddButton = true;
 			}
 			?>
 

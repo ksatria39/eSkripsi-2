@@ -59,7 +59,7 @@
 								<?php $no = 1;
 								foreach ($dospem1 as $dospem1) { ?>
 									<tr>
-										<th scope="row"><?= $no; ?></th>
+										<th scope="row"><?= $no++; ?></th>
 										<td><?php echo $dospem1->judul; ?></td>
 										<td>
 											<?php
@@ -67,7 +67,7 @@
 											echo $mhs->nama;
 											?>
 										</td>
-										<td><?php echo $dospem1->tanggal; ?></td>
+										<td><?php echo format_tgl($dospem1->tanggal); ?></td>
 										<td>
 											<?php
 											$room = $this->db->where('id', $dospem1->room_id)->get('rooms')->row();
@@ -126,7 +126,7 @@
 								<?php $no = 1;
 								foreach ($dospem2 as $dospem2) { ?>
 									<tr>
-										<th scope="row"><?= $no; ?></th>
+										<th scope="row"><?= $no++; ?></th>
 										<td><?php echo $dospem2->judul; ?></td>
 										<td>
 											<?php
@@ -134,7 +134,7 @@
 											echo $mhs->nama;
 											?>
 										</td>
-										<td><?php echo $dospem2->tanggal; ?></td>
+										<td><?php echo format_tgl($dospem2->tanggal); ?></td>
 										<td>
 											<?php
 											$room = $this->db->where('id', $dospem2->room_id)->get('rooms')->row();
@@ -200,7 +200,7 @@
 											echo $mhs->nama;
 											?>
 										</td>
-										<td><?php echo $dosuji1->tanggal; ?></td>
+										<td><?php echo format_tgl($dosuji1->tanggal); ?></td>>
 										<td>
 											<?php
 											$room = $this->db->where('id', $dosuji1->room_id)->get('rooms')->row();
@@ -266,7 +266,7 @@
 											echo $mhs->nama;
 											?>
 										</td>
-										<td><?php echo $dosuji2->tanggal; ?></td>
+										<td><?php echo format_tgl($dosuji2->tanggal); ?></td>
 										<td>
 											<?php
 											$room = $this->db->where('id', $dosuji2->room_id)->get('rooms')->row();

@@ -1,3 +1,5 @@
+
+<!-- Revisi 8-18 -->
 <?php
 $showAddButton = true;
 if (is_array($myProposal) && !empty($myProposal)) {
@@ -15,6 +17,10 @@ if (is_array($myProposal) && !empty($myProposal)) {
 
 if (!$hasApprovedTitle) {
 	$showAddButton = false;
+}
+
+if ($latestTitle->status_ujian_proposal == 'Belum terdaftar') {
+	$showAddButton = true;
 }
 ?>
 

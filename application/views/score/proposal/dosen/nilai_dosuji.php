@@ -133,7 +133,6 @@
 								</div>
 							</td>
 						</tr>
-
 						<tr>
 							<td>Kemampuan Berargumentasi</td>
 							<td>30</td>

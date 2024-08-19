@@ -14,6 +14,17 @@ if (is_array($mySkripsi) && !empty($mySkripsi)) {
 if (!$hasApprovedTitle) {
 	$showAddButton = false;
 }
+
+if ($latestSkripsi->status_ujian_skripsi == "Tidak lulus") {
+	$showAddButton = true;
+}
+
+if ($progress_dospem_1 >= 6 && $progress_dospem_2 >= 6){
+	$showAddButton = true;
+} else {
+	$showAddButton = false;
+}
+
 ?>
 
 <section class="section">
@@ -41,6 +52,7 @@ if (!$hasApprovedTitle) {
 						<tr>
 							<th scope="col">No</th>
 							<th scope="col">Judul</th>
+							<th scope="col">Tanggal Pendaftaran</th>
 							<th scope="col">Naskah</th>
 							<th scope="col">Lembar Persetujuan</th>
 							<th scope="col">Transkrip Nilai</th>
@@ -56,6 +68,7 @@ if (!$hasApprovedTitle) {
 							<tr>
 								<th scope="row"><?= $no++; ?></th>
 								<td><?= $skripsi->judul; ?></td>
+								<td><?= format_tgl($skripsi->tanggal_pendaftaran); ?></td>
 								<td><a class="btn btn-primary" href="<?= base_url() ?>registration_skripsi/view_file/naskah/<?= $skripsi->file_naskah; ?>">Lihat</a></td>
 								<td><a class="btn btn-primary" href="<?= base_url() ?>registration_skripsi/view_file/persetujuan/<?= $skripsi->file_persetujuan; ?>">Lihat</a></td>
 								<td><a class="btn btn-primary" href="<?= base_url() ?>registration_skripsi/view_file/transkrip/<?= $skripsi->file_transkrip; ?>">Lihat</a></td>

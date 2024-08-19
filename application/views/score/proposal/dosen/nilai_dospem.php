@@ -133,7 +133,6 @@
 								</div>
 							</td>
 						</tr>
-
 						<tr>
 							<td>Kemampuan Berargumentasi</td>
 							<td>30</td>
@@ -170,7 +169,6 @@
 								</div>
 							</td>
 						</tr>
-
 						<tr>
 							<td>Kemandirian</td>
 							<td></td>
