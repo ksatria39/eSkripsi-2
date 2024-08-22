@@ -12,6 +12,7 @@ class Announcement_model extends CI_Model
 
 	public function get()
 	{
+		$this->db->order_by('id', 'desc');
 		$query = $this->db->get('announcement');
 		return $query->result();
 	}

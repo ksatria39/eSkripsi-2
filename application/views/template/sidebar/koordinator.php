@@ -10,6 +10,12 @@
 		</li><!-- End Dashboard Nav -->
 
 		<li class="nav-item">
+			<a class="nav-link <?= set_active('announcement'); ?>" href="<?= base_url() ?>announcement/">
+				<i class="ri-megaphone-fill"></i><span>Pengumuman</span>
+			</a>
+		</li><!-- End Announcement Nav -->
+
+		<li class="nav-item">
 			<a class="nav-link <?= set_active('title'); ?>" href="<?= base_url() ?>title/koordinator">
 				<i class="ri-quill-pen-fill"></i><span>Pengajuan Judul</span>
 			</a>

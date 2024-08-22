@@ -11,9 +11,9 @@
 
 		<li class="nav-item">
 			<a class="nav-link <?= set_active('announcement'); ?>" href="<?= base_url() ?>announcement/">
-				<i class="ri-megaphone-fill"></i></i><span>Pengumuman</span>
+				<i class="ri-megaphone-fill"></i><span>Pengumuman</span>
 			</a>
-		</li><!-- End Dashboard Nav -->
+		</li><!-- End Announcement Nav -->
 
 		<li class="nav-item">
 			<a class="nav-link <?= set_active('dm'); ?>" data-bs-target="#data-nav" data-bs-toggle="collapse" href="#">

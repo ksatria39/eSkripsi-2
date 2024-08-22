@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User_model');
+		$this->load->model('Announcement_model');
 	}
 
 	public function index()
@@ -31,6 +32,8 @@ class Dashboard extends CI_Controller
 
 	public function mahasiswa()
 	{
+		
+
 		$this->load->model('Dashboard_model');
 		$this->load->model('Title_model'); // Load the Title_model
 
@@ -42,6 +45,8 @@ class Dashboard extends CI_Controller
 			'title' => "Selamat Datang di Dashboard Mahasiswa",
 			'content' => 'dashboard/mahasiswa',
 		];
+
+		$data['pengumuman'] = $this->Announcement_model->get();
 
 		if ($user_id) {
 			$proposal_data = $this->Dashboard_model->get_proposal_data_by_user_id($user_id);
@@ -65,6 +70,8 @@ class Dashboard extends CI_Controller
 
 	public function dosen()
 	{
+		$data['pengumuman'] = $this->Announcement_model->get();
+
 		$dosen_id = $this->session->userdata('user_id'); // Asumsi ID dosen diambil dari sesi
 		$this->load->model('Dashboard_model');
 		$data['judul'] = $this->Dashboard_model->getBelumDisetujuiJudul();
@@ -91,6 +98,8 @@ class Dashboard extends CI_Controller
 
 	public function koordinator()
 	{
+		$data['pengumuman'] = $this->Announcement_model->get();
+
 		$dosen_id = $this->session->userdata('user_id'); // Asumsi ID dosen diambil dari sesi
 
 		$this->load->model('title_model');
@@ -128,6 +137,8 @@ class Dashboard extends CI_Controller
 
 	public function admin()
 	{
+		$data['pengumuman'] = $this->Announcement_model->get();
+
 		$dosen_id = $this->session->userdata('user_id'); // Asumsi ID dosen diambil dari sesi
 
 		$this->load->model('title_model');
