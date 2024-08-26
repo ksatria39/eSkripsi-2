@@ -598,11 +598,11 @@ class Registration_Skripsi extends CI_Controller
 			redirect('error404');
 		}
 
-		$skripsi = $this->Skpregister_model->getProposal();
+		$skripsi = $this->Skpregister_model->getSkripsi();
 		$data = [
 			'title' => "Pendaftaran Ujian Skripsi",
 			'content' => 'registration/skripsi/admin/admin',
-			'proposal' => $skripsi,
+			'skripsi' => $skripsi,
 		];
 		$this->load->view('template/overlay/admin', $data);
 	}
