@@ -58,9 +58,15 @@ class Post_Proposal extends CI_Controller {
 	{
 		$judul = $this->Propasca_model->get_title($this->session->userdata('user_id'));
 
+		if ($judul) {
+			$content = 'post/proposal/mahasiswa/mahasiswa';
+		} else {
+			$content = 'post/proposal/mahasiswa/mahasiswa2';
+		}
+
 		$data = [
 			'title' => "Pasca Ujian Proposal",
-			'content' => 'post/proposal/mahasiswa/mahasiswa', 
+			'content' => $content, 
 			'judul' => $judul,
 		];
 		$this->load->view('template/overlay/mahasiswa', $data);

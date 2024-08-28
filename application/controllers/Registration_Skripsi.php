@@ -81,15 +81,18 @@ class Registration_Skripsi extends CI_Controller
 
 		$myTitle = $this->Skpregister_model->getMyTitle($this->session->userdata('user_id'));
 
-		$progress_dospem_1 = $this->Skpregister_model->count_progress($myTitle->id, $myTitle->dospem_1_id);
-		$progress_dospem_2 = $this->Skpregister_model->count_progress($myTitle->id, $myTitle->dospem_2_id);
+		if ($myTitle || $mySkripsi) {
+			$content = 'registration/skripsi/mahasiswa/mahasiswa';
+		} else {
+			$content = 'registration/skripsi/mahasiswa/mahasiswa2';
+		}
+
 		$data = [
 			'title' => "Pendaftaran Ujian Skripsi",
-			'content' => 'registration/skripsi/mahasiswa/mahasiswa',
+			'content' => $content,
 			'mySkripsi' => $mySkripsi,
 			'hasApprovedTitle' => $hasApprovedTitle,
-			'progress_dospem_1' => $progress_dospem_1,
-			'progress_dospem_2' => $progress_dospem_2
+			'myTitle' => $myTitle,
 		];
 		$this->load->view('template/overlay/mahasiswa', $data);
 	}

@@ -183,6 +183,7 @@ class Title extends CI_Controller
 		$dospem1 = $this->Title_model->getTitleDospem1($id);
 		$dospem2 = $this->Title_model->getTitleDospem2($id);
 		$titleKo = $this->Title_model->getTitleKo();
+		$dosen = $this->Title_model->getDosen();
 		$t = $this->Title_model->getTitleOnly();
 		$data = [
 			'title' => "Pengajuan Judul",
@@ -190,7 +191,8 @@ class Title extends CI_Controller
 			'titleKo' => $titleKo,
 			'dospem1' => $dospem1,
 			'dospem2' => $dospem2,
-			't' => $t
+			't' => $t,
+			'dosen' => $dosen
 		];
 		$this->load->view('template/overlay/koordinator', $data);
 	}

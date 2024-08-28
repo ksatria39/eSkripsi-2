@@ -22,6 +22,17 @@ class Propasca_model extends CI_Model
 		return $query->row();
 	}
 
+	public function cek_title($user_id)
+	{
+		$this->db->select('*');
+		$this->db->from('title');
+		$this->db->where_in('title.status_ujian_proposal', ['Lulus', 'Lulus ubah judul']);
+		$this->db->where('title.mahasiswa', $user_id);
+		$this->db->order_by('title.tanggal_pengajuan', 'DESC');
+		$query = $this->db->get();
+
+		return $query->num_rows();
+	}
 
 	public function insert($data)
 	{

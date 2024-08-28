@@ -44,7 +44,7 @@
 						<p>Tidak ada pendaftaran ujian proposal yang menunggu persetujuan.</p>
 					<?php } else { ?>
 
-						<table class="table">
+						<table class="table datatable">
 							<thead>
 								<tr>
 									<th scope="col">No</th>

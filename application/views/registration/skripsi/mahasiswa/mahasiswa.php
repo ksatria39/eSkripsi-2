@@ -8,6 +8,9 @@ if (is_array($mySkripsi) && !empty($mySkripsi)) {
 		$showAddButton = true;
 	}
 } else {
+	$latestSkripsi = (object)[
+		'status_ujian_skripsi' => 'Belum terdaftar',
+	];
 	$showAddButton = true;
 }
 
@@ -15,16 +18,22 @@ if (!$hasApprovedTitle) {
 	$showAddButton = false;
 }
 
-if ($latestSkripsi->status_ujian_skripsi == "Tidak lulus") {
-	$showAddButton = true;
-}
+if ($latestSkripsi->status_ujian_skripsi == "Tidak lulus" || $latestSkripsi->status_ujian_skripsi == "Belum terdaftar") {
+	$this->load->model('Skpregister_model');
+	$progress_dospem_1 = $this->Skpregister_model->count_progress($myTitle->id, $myTitle->dospem_1_id);
+	$progress_dospem_2 = $this->Skpregister_model->count_progress($myTitle->id, $myTitle->dospem_2_id);
 
-if ($progress_dospem_1 >= 6 && $progress_dospem_2 >= 6){
-	$showAddButton = true;
+	$progress_dospem_1 = 6;
+	$progress_dospem_2 = 6;
+
+	if ($progress_dospem_1 >= 6 && $progress_dospem_2 >= 6) {
+		$showAddButton = true;
+	} else {
+		$showAddButton = false;
+	}
 } else {
 	$showAddButton = false;
 }
-
 ?>
 
 <section class="section">
